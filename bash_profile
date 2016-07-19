@@ -19,6 +19,9 @@ export EDITOR=vim
 #your OPSCODE username
 export OPSCODE_USER=wanelo
 
+
+export GIT_DUET_GLOBAL=true 
+
 if [ -f $(brew --prefix)/etc/bash_completion  ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
