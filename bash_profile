@@ -16,6 +16,9 @@ export EDITOR=vim
 . ~/.aliases
 . ~/.joyent
 
+#your OPSCODE username
+export OPSCODE_USER=wanelo
+
 if [ -f $(brew --prefix)/etc/bash_completion  ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
