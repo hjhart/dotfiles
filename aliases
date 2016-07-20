@@ -39,4 +39,3 @@ alias 'gap'='git add -p'
 
 # Include custom aliases
 [[ -f ~/.aliases.local  ]] && source ~/.aliases.local
-
