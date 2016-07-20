@@ -11,6 +11,8 @@ alias sshr="ssh -l root"
 alias b="bundle"
 alias be="bundle exec"
 alias pconsole="bundle exec cap production rails:console"
+alias cprod="cd ~/workspace/chef/prod"
+alias nononono="open 'http://www.youtube.com/watch?v=kxRX6LXDpWs'"
 
 # Rails
 alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
@@ -19,5 +21,22 @@ alias s="rspec"
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
+alias 'gst'='git status'
+alias 'gpr'='git pull --rebase'
+alias 'gprs'='git stash && git pull --rebase && git stash pop'
+
+alias 'gs'='git status'
+alias 'gc'='git checkout'
+alias 'gd'='git diff'
+alias 'gi'='git commit'
+alias 'gm'='git commit -m'
+alias 'gl'='git log'
+alias 'gpp'='git pull && git push'
+alias 'ga'='git add'
+alias 'gaa'='git add -A'
+alias 'gap'='git add -p'
+
+
 # Include custom aliases
 [[ -f ~/.aliases.local  ]] && source ~/.aliases.local
+
