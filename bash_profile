@@ -28,30 +28,6 @@ if [ -f $(brew --prefix)/etc/bash_completion  ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-# Path to the bash it configuration
-export BASH_IT="~/.bash_it"
-
-# Lock and Load a custom theme file
-# location /.bash_it/themes/
-export BASH_IT_THEME='wanelo'
-
-# Don't check mail when opening terminal.
-unset MAILCHECK
-
-# Change this to your console based IRC client of choice.
-export IRC_CLIENT='irssi'
-
-# Set this to the command you use for todo.txt-cli
-export TODO="t"
-
-# Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
-
-# Set vcprompt executable path for scm advance info in prompt (demula theme)
-# https://github.com/djl/vcprompt
-#export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
-
-# Load Bash It
-if [ -f $BASH_IT/bash_it.sh ]; then
-  source $BASH_IT/bash_it.sh
+if [ -f ~/bash_it_profile  ]; then
+. ~/bash_it_profile
 fi
