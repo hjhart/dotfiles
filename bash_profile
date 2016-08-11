@@ -1,5 +1,4 @@
 eval "$(rbenv init -)"
-PATH=./bin:$PATH
 
 if [ -f ~/.bashrc ]; then
   . ~/.bashrc
@@ -31,3 +30,5 @@ fi
 if [ -f ~/bash_it_profile  ]; then
 . ~/bash_it_profile
 fi
+
+PATH=./bin:$PATH
