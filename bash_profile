@@ -1,8 +1,8 @@
-eval "$(rbenv init -)"
-
 if [ -f ~/.bashrc ]; then
   . ~/.bashrc
 fi
+
+eval "$(rbenv init -)"
 
 export WS=~/workspace
 export LANG=en_US.UTF-8
@@ -32,3 +32,4 @@ if [ -f ~/bash_it_profile  ]; then
 fi
 
 PATH=./bin:$PATH
+export PATH
