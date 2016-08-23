@@ -11,3 +11,4 @@ pairs:
 email:
   prefix: 
   domain: wanelo.com
+global: true
