@@ -1,12 +1,13 @@
 pairs:
-  ar: Andrew Rohn, andrew
-  au: Amiti Uttarwar, amiti
+  ab: Alex Bush; alex
+  ar: Andrew Rohn; andrew
+  au: Amiti Uttarwar; amiti
   jf: Julian Fahrer; julian
   jh: James Hart; james
-  js: Jonathan Simon, js
-  kf: Kelly Felkins, kelly
-  mc: Matt Camuto, matt.camuto
-  mj: Madhavi Jagdish, madhavi
+  js: Jonathan Simon; js
+  kf: Kelly Felkins; kelly
+  mc: Matt Camuto; matt.camuto
+  mj: Madhavi Jagdish; madhavi
 email:
   prefix: 
   domain: wanelo.com
