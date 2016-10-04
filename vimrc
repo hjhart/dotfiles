@@ -36,7 +36,6 @@ Plugin 'Shougo/unite.vim' " See https://coderwall.com/p/pwh5jg/ignoring-gitignor
 Plugin 'Shougo/vimproc.vim' " Run make inside ~/.vim/bundle/vimproc.vim after installation!
  
 " Ruby and Rails helpers
-Plugin 'rorymckinley/vim-rubyhash'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-rails'
