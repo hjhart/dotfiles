@@ -17,10 +17,6 @@ export EDITOR=vim
 
 . ~/.aliases
 
-if [ -f $(brew --prefix)/etc/bash_completion  ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
 if [ -f ~/bash_it_profile  ]; then
 . ~/bash_it_profile
 fi
