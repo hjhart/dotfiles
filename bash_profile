@@ -1,25 +1,14 @@
-if [ -f ~/.bashrc ]; then
-  . ~/.bashrc
-fi
+export PATH="/usr/local/bin:$PATH"
 
-eval "$(rbenv init -)"
+# Path to the bash it configuration
+export BASH_IT="/Users/wanelo/.bash_it"
 
-export WS=~/workspace
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# Lock and Load a custom theme file
+export BASH_IT_THEME="wanelo"
 
-export CDPATH=.:$HOME/workspace
+# Load Bash It
+source $BASH_IT/bash_it.sh
 
-# prompt
-export PS1="\e[32m[\t]\e[0m \u@\h\e[33m [\w]\e[0m \n> "
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-export EDITOR=vim
-
-. ~/.aliases
-
-if [ -f ~/bash_it_profile  ]; then
-. ~/bash_it_profile
-fi
-
-PATH=./bin:$PATH
-export PATH
+[[ -s "/Users/wanelo/.gvm/scripts/gvm" ]] && source "/Users/wanelo/.gvm/scripts/gvm"
