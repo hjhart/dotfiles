@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:~/bin:./bin:$PATH"
 
 # Path to the bash it configuration
 export BASH_IT="/Users/wanelo/.bash_it"
