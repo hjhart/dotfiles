@@ -2,12 +2,13 @@ set -x
 
 brew bundle
 
-rcup -v ~
+rcup -v
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 vim +PluginInstall
 
 cp bin/tat /usr/local/bin/tat
-chmod +x tat
 
+cd ~/.vim/bundle/youcompleteme
+./install.sh
