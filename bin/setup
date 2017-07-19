@@ -1,3 +1,5 @@
+set -x
+
 brew bundle
 
 rcup -v ~
