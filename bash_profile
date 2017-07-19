@@ -1,7 +1,7 @@
 export PATH="/usr/local/bin:~/bin:./bin:$PATH"
 
 # Path to the bash it configuration
-export BASH_IT="/Users/wanelo/.bash_it"
+export BASH_IT="${HOME}/.bash_it"
 
 # Lock and Load a custom theme file
 export BASH_IT_THEME="wanelo"

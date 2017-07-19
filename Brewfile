@@ -1,2 +1,5 @@
+brew "vim"
 brew "fzf"
 brew "cmake"
+tap "thoughtbot/formulae"
+brew "rcm"
