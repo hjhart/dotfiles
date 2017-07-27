@@ -36,7 +36,7 @@ alias 'gpp'='git pull && git push'
 alias 'ga'='git add'
 alias 'gaa'='git add -A'
 alias 'gap'='git add -p'
-
+alias 'gdc'='git diff --cached'
 
 # Include custom aliases
 [[ -f ~/.aliases.local  ]] && source ~/.aliases.local
