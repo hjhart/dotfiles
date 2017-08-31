@@ -45,7 +45,6 @@ Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rails'              " Rails integration
 Plugin 'ecomba/vim-ruby-refactoring'  " Handy helpers to refactor ruby code.
-Plugin 'rorymckinley/vim-rubyhash'    " Change ruby hash syntax with <leader>rr / <leader>rs / <leader>rt
 
 " Themes
 Plugin 'flazz/vim-colorschemes'
@@ -123,7 +122,7 @@ syntax enable
 syntax sync fromstart  " http://vim.wikia.com/wiki/Fix_syntax_highlighting
 
 " Appereance
-" set background=dark
+set background=dark
 set t_Co=256 " 256 colors
 colorscheme solarized
 highlight ColorColumn ctermbg=235 " Make it more obviouser when lines are too long
