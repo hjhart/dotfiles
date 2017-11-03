@@ -38,5 +38,11 @@ alias 'gaa'='git add -A'
 alias 'gap'='git add -p'
 alias 'gdc'='git diff --cached'
 
+alias 'pconsole'='be cap production rails:console'
+alias 'sconsole'='be cap staging rails:console'
+alias 'pdeploy'='be cap production deploy'
+alias 'sdeploy'='be cap staging deploy'
+alias 'roll'='be script/roll production'
+
 # Include custom aliases
 [[ -f ~/.aliases.local  ]] && source ~/.aliases.local

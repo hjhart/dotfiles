@@ -11,3 +11,7 @@ tags
 tmp/**/*
 !tmp/cache/.keep
 *.pyc
+.DS_Store
+.sass-cache/
+_site/
+.jekyll-metadata

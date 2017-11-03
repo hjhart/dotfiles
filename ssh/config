@@ -43,3 +43,4 @@ Host *.dev
   UserKnownHostsFile=/dev/null
 Host 192.*
   StrictHostKeyChecking no
+
