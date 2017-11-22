@@ -26,9 +26,6 @@ export MANTA_KEY_ID=$(ssh-keygen -l -f $HOME/.ssh/id_rsa_wanelo.pub | awk '{prin
 #your OPSCODE username
 export OPSCODE_USER=wanelo
 
-# newrelic agent for android
-export NEWRELIC_HOME=${WS}/android-app/android/ext/newrelic
-
 # prompt
 export PS1="\e[32m[\t]\e[0m \u@\h\e[33m [\w]\e[0m \n> "
 
@@ -40,3 +37,7 @@ export PGPASSWORD=w4n3l0
 
 # go
 export GOPATH=$WS/gocode
+
+# custom aliases
+test -e "${HOME}/.aliases" && source "${HOME}/.aliases"
+

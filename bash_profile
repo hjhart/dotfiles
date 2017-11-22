@@ -11,4 +11,4 @@ source $BASH_IT/bash_it.sh
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-[[ -s "/Users/wanelo/.gvm/scripts/gvm" ]] && source "/Users/wanelo/.gvm/scripts/gvm"
+[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
