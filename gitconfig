@@ -28,7 +28,7 @@
 	uncommit = reset --soft HEAD^
 [core]
 	pager = less -FXRS -x2
-	excludesfile = /Users/hjhart/.gitignore
+	excludesfile = ~/.gitignore
 [apply]
 	whitespace = nowarn
 [color]
