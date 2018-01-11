@@ -45,6 +45,7 @@ Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rails'              " Rails integration
 Plugin 'ecomba/vim-ruby-refactoring'  " Handy helpers to refactor ruby code.
+Plugin 'rorymckinley/vim-rubyhash'    " Change ruby hash syntax with <leader>rr / <leader>rs / <leader>rt
 
 " Themes
 Plugin 'flazz/vim-colorschemes'
@@ -66,6 +67,7 @@ Plugin 'mileszs/ack.vim'
 " Open alternative file with :A / :AV / :AH
 Plugin 'compactcode/open.vim'
 Plugin 'compactcode/alternate.vim'
+Plugin 'jfahrer/vim-suggest-alternate'
 
 " tmux integration
 Plugin 'christoomey/vim-tmux-navigator'
@@ -306,13 +308,20 @@ nnoremap <silent> <Leader><Right> :exe "vertical resize " . (winwidth(0) * 2/3)<
 command! A Open(alternate#FindAlternate())
 command! AH OpenHorizontal(alternate#FindAlternate())
 command! AV OpenVertical(alternate#FindAlternate())
+command! CA Open(suggest_alternate#FileName())
+command! CAH OpenHorizontal(suggest_alternate#FileName())
+command! CAV OpenVertical(suggest_alternate#FileName())
+
+nnoremap <leader>O <C-w><C-o>
+nnoremap <leader>o <C-w><C-o>:AV<CR>
+nnoremap <leader>c :CAV<CR>
+nnoremap <leader>C :CA<CR>
 
 " Searching with ag/ack
 if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case -p ~/.agignore'
   set grepprg=ag\ --nogroup\ --nocolor
 endif
-
 
 " Projetc wide search
 nnoremap <leader>/ :Ack!<SPACE>
@@ -321,8 +330,6 @@ nnoremap <leader>/ :Ack!<SPACE>
 nmap <leader>? :Ack! "<C-r><C-w>" -Q<CR>:cw<CR>
 nmap <leader>* :Ack! "<C-r><C-w>" % -Q<CR>:cw<CR>
 
-nnoremap <leader>O <C-w><C-o>
-nnoremap <leader>o <C-w><C-o>:AV<CR>
 
 " Setting up tags
 " Generate tags witch :tg (project) or :tgg (gems)
