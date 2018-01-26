@@ -3,7 +3,7 @@
 ## Setup!
 
 ```bash
-hub clone hjhart/dotfiles ~/.dotfiles
+git clone github.com/hjhart/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 ./bin/setup
 ```
