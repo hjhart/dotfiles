@@ -1,14 +1,15 @@
 #!/bin/bash
-# Usage: ./vncssh hostname ssh_port remote_user
-# e.g. ./vnchssh hjhart.com 22024 hjhart
+# Usage: ./vncssh hostname ssh_port remote_user ssh_key
+# e.g. ./vnchssh hjhart.com 22024 hjhart ~/.ssh/id_rsa
 
 host=$1
 port=5900
 ssh_port=$2
 user=$3
+ssh_identity_file=$4
 
 localport=$((30000 + RANDOM % 20000))
-ssh -o ExitOnForwardFailure=yes -fNL "$localport:localhost:$port" "$host" -l "$user" -p $ssh_port || exit
+ssh -o ExitOnForwardFailure=yes -fNL "$localport:localhost:$port" "$host" -l "$user" -p $ssh_port -i $ssh_identity_file -v || exit
 pid=$(lsof -t -i:$localport)
 open -W vnc://$user@localhost:$localport
 kill "$pid"
