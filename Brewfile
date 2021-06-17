@@ -1,7 +1,5 @@
 brew "tmux"
 brew "vim"
-brew "fzf"
-brew "cmake"
 brew "mas"
 tap "thoughtbot/formulae"
 brew "rcm"

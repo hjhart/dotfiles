@@ -1,0 +1,24 @@
+{
+  "coauthors": {
+    "mm": {
+      "name": "Matt McKenna",
+      "email": "mmckenna@emiliohealth.com"
+    },
+    "js": {
+      "name": "Jonathan Simon",
+      "email": "jsimon@emiliohealth.com"
+    },
+    "jf": {
+      "name": "Julian Fahrer",
+      "email": "jfahrer@emiliohealth.com"
+    },
+    "ks": {
+      "name": "Kyle Shipley",
+      "email": "kshipley@emiliohealth.com"
+    },
+    "jh": {
+      "name": "James Hart",
+      "email": "jhart@hellobrightline.com"
+    }
+  }
+}

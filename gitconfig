@@ -1,55 +1,41 @@
-[user]
-	name = James Hart
-	email = james@wanelo.com
+[core]
+	editor = /usr/local/bin/vim
+	pager = delta
+[transfer]
+	fsckobjects = true
 [alias]
+	prom = pull --rebase origin master
+	f = fetch
+	b = checkout -b
+	m = commit -m
+	gst = git
 	st = status
 	di = diff
 	co = checkout
 	ci = commit
+	cp = cherry-pick
 	br = branch
 	sta = stash
 	llog = log --date=local
 	flog = log --pretty=fuller --decorate
-	lg = log --oneline
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lol = log --graph --decorate --oneline
 	lola = log --graph --decorate --oneline --all
 	blog = log origin/master... --left-right
 	ds = diff --staged
-	fixup = commit --amend -C HEAD
+	fixup = commit --fixup
 	squash = commit --squash
+	amendit = commit --amend --no-edit
 	unstage = reset HEAD
 	rum = rebase master@{u}
-	burn = reset --hard HEAD^
-	g = log --pretty=format:\"%h %an - %s\" --graph
-	lc = log ORIG_HEAD.. --stat --no-merges
-	nuke = reset --hard HEAD
-	ol = log --format=\"%C(yellow)%h%Creset %C(cyan)%aN%Creset\t%s\"
-	w = whatchanged
-	uncommit = reset --soft HEAD^
-[core]
-	pager = less -FXRS -x2
-	excludesfile = ~/.gitignore
-[apply]
-	whitespace = nowarn
-[color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
-	ui = true
-[branch]
-	autosetupmerge = true
-	autosetuprebase = remote
-	mergeoptions = --no-commit --no-ff
-[rebase]
-	autosquash = true
-[push]
-	default = current
-[hub]
-	protocol = https
-[credential]
-	helper = cache --timeout 32400
-[autosetup]
-	rebase = true
+[user]
+	email = jhart@hellobrightline.com
+	name = James Hart
 [pull]
-	default = current
+	rebase = false
+[delta]
+	plus-color = "#012800"
+	minus-color = "#340001"
+	syntax-theme = Monokai Extended
+[interactive]
+	diffFilter = delta --color-only

@@ -1,14 +1,28 @@
-export PATH="/usr/local/bin:~/bin:./bin:$PATH"
+#!/usr/bin/env bash
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Load ASDF
+source $HOME/.asdf/asdf.sh
+
+# If not running interactively, don't do anything
+case $- in
+  *i*) ;;
+    *) return;;
+esac
 
 # Path to the bash it configuration
-export BASH_IT="${HOME}/.bash_it"
+export BASH_IT="/Users/james/.bash_it"
 
-# Lock and Load a custom theme file
-export BASH_IT_THEME="wanelo"
+export BASH_IT_THEME='bobby'
+
+# Don't check mail when opening terminal.
+unset MAILCHECK
+
+# Set this to false to turn off version control status checking within the prompt for all themes
+export SCM_CHECK=true
 
 # Load Bash It
-source $BASH_IT/bash_it.sh
+source "$BASH_IT"/bash_it.sh
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
+export PATH="./bin:$PATH"
