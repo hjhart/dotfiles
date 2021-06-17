@@ -1,0 +1,11 @@
+# Unix
+alias ll="ls -al"
+alias lt="ls -altr"
+alias ..="cd .."
+
+# Bundler / rails
+
+
+abbr -a gprs git stash && git pull --rebase && git stash pop
+
+alias 'gpp'='git pull && git push'
