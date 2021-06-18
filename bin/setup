@@ -12,3 +12,8 @@ vim +PluginInstall
 
 cp bin/tat /usr/local/bin/tat
 
+curl -L https://get.oh-my.fish | fish
+
+omf install agnoster
+
+brew tap homebrew/cask-fonts

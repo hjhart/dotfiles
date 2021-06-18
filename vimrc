@@ -30,12 +30,6 @@ Plugin 'christoomey/vim-system-copy' " Copy / paste from the system clipboard
 Plugin 'kien/ctrlp.vim'            " For files with <C-p>
 Plugin 'tacahiroy/ctrlp-funky'     " Fuzzy find definitions in current buffer with <leader>fu
 
-" Autocomplete
-" Needs to be recompiled after an upgrade:
-" cd ~/.vim/bundle/youcompleteme
-" ./install.py
-Plugin 'valloric/youcompleteme'
-
 " Testing
 Plugin 'janko-m/vim-test'
 
@@ -398,3 +392,4 @@ nnoremap <leader>n :call RenameFile()<CR>
 
 nnoremap <leader>v :source ~/.vimrc<CR>
 
+colorscheme 1989
