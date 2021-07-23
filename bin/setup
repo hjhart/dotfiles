@@ -1,6 +1,6 @@
 set -x
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+curl https://raw.githubusercontent.com/emiliohealth/workstation/main/script/bootstrap | sh
 
 brew bundle
 
@@ -11,6 +11,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall
 
 cp bin/tat /usr/local/bin/tat
+cp bin/ntimes /usr/local/bin/ntimes
 
 curl -L https://get.oh-my.fish | fish
 
