@@ -120,7 +120,7 @@ syntax sync fromstart  " http://vim.wikia.com/wiki/Fix_syntax_highlighting
 " Appereance
 set background=dark
 set t_Co=256 " 256 colors
-colorscheme solarized
+
 highlight ColorColumn ctermbg=235 " Make it more obviouser when lines are too long
 set list listchars=tab:»·,trail:· " Display extra whitespace
 
@@ -392,4 +392,4 @@ nnoremap <leader>n :call RenameFile()<CR>
 
 nnoremap <leader>v :source ~/.vimrc<CR>
 
-colorscheme 1989
+colorscheme delek
