@@ -40,3 +40,7 @@
 	syntax-theme = Monokai Extended
 [init]
 	defaultBranch = main
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain

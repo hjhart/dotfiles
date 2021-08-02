@@ -13,6 +13,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+
+set shell=/bin/bash
+
 " Little helpers
 Plugin 'duggiefresh/vim-easydir'     " Easily create direcories and files
 Plugin 'tpope/vim-fugitive'          " Git wrapper
