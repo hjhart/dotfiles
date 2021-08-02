@@ -1,3 +1,5 @@
+echo "Loading abbreviations"
+
 abbr -a gco git checkout
 
 abbr -a gst git status
@@ -34,10 +36,10 @@ abbr -a comp hub compare
 
 
 
-abbr -a vabbr vim ~/.config/fish/functions/abbreviations
-abbr -a sabbr source ~/.config/fish/functions/abbreviations
-abbr -a valiases vim ~/.config/fish/functions/aliases
-abbr -a saliases source ~/.config/fish/functions/aliases
+abbr -a vabbr vim ~/.config/fish/conf.d/abbreviations.fish
+abbr -a sabbr source ~/.config/fish/conf.d/abbreviations.fish
+abbr -a valiases vim ~/.config/fish/conf.d/aliases.fish
+abbr -a saliases source ~/.config/fish/conf.d/aliases.fish
 
 abbr -a dc docker-compose
 
