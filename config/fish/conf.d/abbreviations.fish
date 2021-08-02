@@ -49,3 +49,6 @@ abbr -a sdd ./script/diff-deploy --log
 abbr -a sd ./script/deploy production
 abbr -a su ./script/update
 abbr -a d docker
+abbr -a a aptible
+abbr -a al aptible login
+
