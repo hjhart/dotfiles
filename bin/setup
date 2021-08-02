@@ -10,8 +10,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 vim +PluginInstall +qall
 
-cp bin/tat /usr/local/bin/tat
-cp bin/ntimes /usr/local/bin/ntimes
+cp bin/tat /opt/homebrew/bin/tat
+cp bin/ntimes /opt/homebrew/bin/times
 
 curl -L https://get.oh-my.fish | fish
 
