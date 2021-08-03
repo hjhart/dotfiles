@@ -51,4 +51,4 @@ abbr -a su ./script/update
 abbr -a d docker
 abbr -a a aptible
 abbr -a al aptible login
-
+abbr -a ys yarn storybook

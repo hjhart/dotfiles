@@ -1,4 +1,5 @@
 brew "tmux"
+brew "fzf"
 brew "vim"
 brew "delta"
 brew "mas"
