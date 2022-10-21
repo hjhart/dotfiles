@@ -1,6 +1,6 @@
 [core]
-	editor = /usr/local/bin/vim
-	pager = delta
+	editor = /opt/homebrew/bin/vim
+	pager = less
 [transfer]
 	fsckobjects = true
 [alias]
