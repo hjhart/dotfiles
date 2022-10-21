@@ -346,7 +346,7 @@
     },
     "tap": {
       "thoughtbot/formulae": {
-        "revision": "a6bb452f4c03204fc49556c81e64172700a6d6d1"
+        "revision": "61cd920b29f9bfe7bedae2f38ffacd4cc78ea39c"
       }
     },
     "cask": {
@@ -411,11 +411,11 @@
         "macOS": "11.5"
       },
       "monterey": {
-        "HOMEBREW_VERSION": "3.6.6",
+        "HOMEBREW_VERSION": "3.6.6-34-gfaa9950",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "6aaa0bbee847aad25f2b7ca802cbdc908b47b07f",
+        "Homebrew/homebrew-core": "38f7de35e4c906d2ddd7a6cde42c1d3673d13cfe",
         "CLT": "14.0.0.0.1.1661618636",
-        "Xcode": "14.0.1",
+        "Xcode": "14.1",
         "macOS": "12.6"
       }
     }

@@ -16,5 +16,4 @@ cask "shiftit"
 cask "pop"
 mas "bear", id: 1091189122
 mas "todoist", id: 585829637
-mas "kelir", id: 1145215534
 mas "mr tidy", id: 1063178800
