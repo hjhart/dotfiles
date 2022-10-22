@@ -391,6 +391,12 @@
         "options": {
           "full_name": "pop"
         }
+      },
+      "docker": {
+        "version": "4.13.0,89412",
+        "options": {
+          "full_name": "docker"
+        }
       }
     },
     "mas": {
@@ -413,7 +419,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.6.6-34-gfaa9950",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "38f7de35e4c906d2ddd7a6cde42c1d3673d13cfe",
+        "Homebrew/homebrew-core": "156cf3685b57b82185a6c70a6e58fafb87ad6c6c",
         "CLT": "14.0.0.0.1.1661618636",
         "Xcode": "14.1",
         "macOS": "12.6"
