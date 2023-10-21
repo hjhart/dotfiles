@@ -13,5 +13,6 @@ cask "figma"
 cask "flycut"
 cask "shiftit"
 cask "notion"
+cask "firefox"
 mas "bear", id: 1091189122
 mas "mr tidy", id: 1063178800
