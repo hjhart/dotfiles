@@ -11,8 +11,6 @@ abbr -a gd git diff
 abbr -a gi git commit
 abbr -a gcom git checkout main
 abbr -a gm git commit -m
-abbr -a nv --no-verify
-abbr -a ne --no-edit
 abbr -a gce git commit --allow-empty --no-edit -m
 abbr -a gl git log
 abbr -a gp git push -u origin head
