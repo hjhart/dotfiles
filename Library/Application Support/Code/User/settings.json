@@ -1,0 +1,156 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "ruby.useLanguageServer": true,
+    "ruby.specFocusTerminal": false,
+    "[ruby]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2,
+      "editor.formatOnSave": false,
+      "editor.defaultFormatter": "Shopify.ruby-lsp"
+    },
+    "typescript.workspaceSymbols.scope": "currentProject",
+    "solargraph.useBundler": true,
+    "vim.insertModeKeyBindings": [
+      {
+        "before": ["j", "k"],
+        "after": ["<Esc>"]
+      }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<leader>", "c"],
+        "commands": [
+          {
+            "command": "alternate.createAlternateFileInSplit"
+          }
+        ]
+      },
+      {
+        "before": ["<leader>", "o"],
+        "commands": [
+          "workbench.action.closeSidebar",
+          "workbench.action.closeEditorsInOtherGroups",
+          "workbench.action.closeOtherEditors",
+          "alternate.alternateFileInSplit"
+        ]
+      },
+      {
+        "before": ["<leader>", "O"],
+        "commands": [
+          "workbench.action.closeSidebar",
+          "workbench.action.closeEditorsInOtherGroups",
+          "workbench.action.closeOtherEditors"
+        ]
+      },
+      {
+        "before": ["<leader>", "p"],
+        "commands": ["workbench.action.toggleSidebarVisibility"]
+      },
+      {
+        "before": ["<leader>", "t"],
+        "commands": [
+          "extension.runSpecLine",
+          "workbench.action.focusActiveEditorGroup"
+        ]
+      },
+      {
+        "before": ["<leader>", "f"],
+        "commands": [
+          "extension.runFileSpecs",
+          "workbench.action.focusActiveEditorGroup"
+        ]
+      },
+      {
+        "before": ["<leader>", "l"],
+        "commands": [
+          "extension.runLastSpec",
+          "workbench.action.focusActiveEditorGroup"
+        ]
+      }
+    ],
+    "vim.foldfix": true,
+    "vim.leader": " ",
+    "explorer.confirmDragAndDrop": false,
+    "solargraph.externalServer": {},
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDelete": false,
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "svg.preview.mode": "svg",
+    "ruby.format": "standard",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "ruby.specSaveFile": true,
+    "tailwindCSS.experimental.showPixelValues": true,
+    "workbench.colorCustomizations": {
+      "[Material Theme High Contrast]": {}
+    },
+    "workbench.editor.wrapTabs": true,
+    "tabnine.experimentalAutoImports": true,
+    "docker.showStartPage": false,
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.iconTheme": "eq-material-theme-icons",
+    "editor.suggest.showStatusBar": true,
+    "editor.cursorStyle": "line",
+    "editor.insertSpaces": false,
+    "editor.lineNumbers": "on",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "off",
+    "ruby.lint": {
+      "rubocop": true
+    },
+    "tailwindCSS.lint.invalidApply": "ignore",
+    "scss.lint.unknownAtRules": "ignore",
+    "workbench.colorTheme": "Material Theme High Contrast",
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.scrollback": 100000,
+    "search.useIgnoreFiles": false,
+    "search.exclude": {
+      "**/log": true,
+      "app/assets/builds": true,
+      "public/assets": true,
+      "public/packs": true,
+      "public/packs-test": true
+    },
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+      "*": true,
+      "plaintext": true,
+      "markdown": false,
+      "scminput": false,
+      "yaml": true
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.autoSave": "afterDelay",
+    "[erb]": {
+      "editor.formatOnSave": false
+    },
+    "[markdown]": {
+      "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "Lua.telemetry.enable": false,
+    "editor.stickyScroll.enabled": true,
+    "workbench.editor.enablePreview": false,
+    "gitlens.codeLens.enabled": false,
+    "files.associations": {
+      "*.jb": "ruby"
+    },
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "terminal.integrated.enableMultiLinePasteWarning": false
+  }

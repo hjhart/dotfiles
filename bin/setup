@@ -1,12 +1,12 @@
-set -x
+#!/usr/bin/env sh
+
+set -ex
 
 curl https://raw.githubusercontent.com/emiliohealth/workstation/main/script/bootstrap | sh
 
-brew bundle
-
-rcup -v
-
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+./update
 
 vim +PluginInstall +qall
 
@@ -19,3 +19,4 @@ omf install agnoster
 
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
+

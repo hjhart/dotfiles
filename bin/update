@@ -1,0 +1,21 @@
+#!/usr/bin/env fish
+
+brew bundle
+
+rcup -v
+
+fisher plugins
+fisher install jorgebucaran/autopair.fish
+fisher install jethrokuan/z
+fisher install ttscoff/fuzzy_cd
+fisher install gazorby/fish-abbreviation-tips
+fisher install franciscolourenco/done
+fisher install IlanCosman/tide@v6
+
+# default file extensions
+duti -s com.microsoft.VSCode .rb all
+
+# vscode plugins
+for extension in (cat ./support/vscode-extensions)
+    code --install-extension $extension
+end

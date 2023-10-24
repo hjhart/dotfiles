@@ -1,3 +1,2 @@
-EXCLUDES="README.md LICENSE"
-UNDOTTED="bin"
-
+EXCLUDES="README.md LICENSE support Brewfile*"
+UNDOTTED="Library bin settings.json"
