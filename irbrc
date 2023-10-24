@@ -9,6 +9,7 @@ IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
 IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:USE_AUTOCOMPLETE] = false
 
 class Object
   # list methods which aren't in superclass

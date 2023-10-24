@@ -10,12 +10,16 @@ abbr -a gb git checkout -b
 abbr -a gd git diff
 abbr -a gi git commit
 abbr -a gcom git checkout main
+abbr -a gcod git checkout develop
 abbr -a gm git commit -m
 abbr -a gce git commit --allow-empty --no-edit -m
 abbr -a gl git log
 abbr -a gp git push -u origin head
 abbr -a gpom git pull --rebase origin main
 abbr -a gpu git pull
+
+abbr -a gsta git stash
+abbr -a gstap git stash pop
 
 abbr -a b bundle
 abbr -a be bundle exec
@@ -26,7 +30,9 @@ abbr -a gdc git diff --cached
 abbr -a gca git commit --amend --no-verify --no-edit
 abbr -a gpfwl git push --force-with-lease
 abbr -a gmm git merge main
+abbr -a gmd git merge develop
 abbr -a ci hub ci-status --verbose
+abbr -a hc hub compare
 abbr -a ci1 hub ci-status --verbose HEAD~1
 abbr -a ci2 hub ci-status --verbose HEAD~2
 abbr -a ci3 hub ci-status --verbose HEAD~3
@@ -52,10 +58,13 @@ abbr -a sd ./script/deploy production
 abbr -a su ./script/update
 abbr -a d docker
 abbr -a a aptible
-abbr -a al aptible login
+abbr -a al aptible login --email="jhart@hellobrightline.com" --lifetime 7d 
 abbr -a sl script/lint
+abbr -a sls script/lint --staged
 
 abbr -a gcf git commit -m \"Fix specs\"
 abbr -a gcl git commit -m Lint
 abbr -a rr rails routes
 abbr -a orw overmind restart web
+
+abbr -a sec security list-keychains
