@@ -14,6 +14,8 @@ fisher install IlanCosman/tide@v6
 
 # default file extensions
 duti -s com.microsoft.VSCode .rb all
+duti -s com.microsoft.VSCode .plist all
+duti -s com.microsoft.VSCode .kt all
 
 # vscode plugins
 for extension in (cat ./support/vscode-extensions)

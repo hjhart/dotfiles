@@ -8,6 +8,7 @@ brew "dog"
 brew "bat"
 brew "duti"
 brew "terminal-notifier"
+brew "defaultbrowser"
 
 tap "thoughtbot/formulae"
 brew "rcm"

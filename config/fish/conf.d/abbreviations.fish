@@ -17,6 +17,9 @@ abbr -a gl git log
 abbr -a gp git push -u origin head
 abbr -a gpom git pull --rebase origin main
 abbr -a gpu git pull
+abbr -a gba git branch -a 
+
+
 
 abbr -a gsta git stash
 abbr -a gstap git stash pop
@@ -68,3 +71,5 @@ abbr -a rr rails routes
 abbr -a orw overmind restart web
 
 abbr -a sec security list-keychains
+abbr -a dbc defaultbrowser chrome
+abbr -a dbf defaultbrowser firefox
