@@ -136,7 +136,7 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "onFocusChange",
   "[erb]": {
     "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
     "editor.formatOnSave": true
@@ -155,5 +155,7 @@
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "editor.unicodeHighlight.nonBasicASCII": false,
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "tailwindDocs.useSimpleBrowser": false,
+  "headwind.runOnSave": false
 }
