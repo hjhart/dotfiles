@@ -51,6 +51,8 @@ abbr -a val vim ~/.config/fish/conf.d/aliases.fish
 abbr -a sal source ~/.config/fish/conf.d/aliases.fish
 
 abbr -a dc docker-compose
+abbr -a dcud docker-compose up -d
+abbr -a dcd docker-compose down
 
 abbr -a ss ./script/server
 abbr -a sr ./script/run
@@ -73,3 +75,9 @@ abbr -a orw overmind restart web
 abbr -a sec security list-keychains
 abbr -a dbc defaultbrowser chrome
 abbr -a dbf defaultbrowser firefox
+
+
+abbr -a fd fly deploy
+
+abbr -a ext bin/extract 
+abbr -a exh bin/extract_for_henry

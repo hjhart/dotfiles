@@ -3,13 +3,15 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "diffEditor.ignoreTrimWhitespace": false,
-  "ruby.useLanguageServer": true,
   "ruby.specFocusTerminal": false,
+  "ruby.lint": {
+    "rubocop": false
+  },
   "[ruby]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.formatOnSave": false,
-    "editor.defaultFormatter": "Shopify.ruby-lsp"
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "testdouble.vscode-standard-ruby"
   },
   "typescript.workspaceSymbols.scope": "currentProject",
   "solargraph.useBundler": true,
@@ -82,20 +84,16 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "svg.preview.mode": "svg",
-  "ruby.format": "standard",
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.acceptSuggestionOnEnter": "off",
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "ruby.specSaveFile": true,
-  "tailwindCSS.experimental.showPixelValues": true,
   "workbench.colorCustomizations": {
     "[Material Theme High Contrast]": {}
   },
   "workbench.editor.wrapTabs": true,
-  "tabnine.experimentalAutoImports": true,
-  "docker.showStartPage": false,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -109,9 +107,6 @@
   "editor.lineNumbers": "on",
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "off",
-  "ruby.lint": {
-    "rubocop": true
-  },
   "tailwindCSS.lint.invalidApply": "ignore",
   "scss.lint.unknownAtRules": "ignore",
   "workbench.colorTheme": "Material Theme High Contrast",
@@ -123,7 +118,9 @@
     "app/assets/builds": true,
     "public/assets": true,
     "public/packs": true,
-    "public/packs-test": true
+    "public/packs-test": true,
+    "tmp/cache": true,
+    "spec/cassettes": true
   },
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
@@ -144,7 +141,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "Lua.telemetry.enable": false,
   "editor.stickyScroll.enabled": true,
   "workbench.editor.enablePreview": false,
   "gitlens.codeLens.enabled": false,
