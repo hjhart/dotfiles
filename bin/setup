@@ -2,13 +2,17 @@
 
 set -ex
 
-curl https://raw.githubusercontent.com/emiliohealth/workstation/main/script/bootstrap | sh
+./bootstrap
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [[ -d ~/.vim/bundle/Vundle.vim ]]; then
+    echo "Already installed Vundle"
+else
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
+fi
 
-./update
+./bin/update
 
-vim +PluginInstall +qall
 
 cp bin/tat /opt/homebrew/bin/tat
 cp bin/ntimes /opt/homebrew/bin/times
