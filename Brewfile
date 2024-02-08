@@ -15,6 +15,7 @@ brew "rcm"
 brew "fish"
 brew "fisher"
 cask "visual-studio-code"
+cask "1password"
 
 cask "docker"
 cask "iterm2"
@@ -25,3 +26,4 @@ cask "notion"
 cask "firefox"
 mas "bear", id: 1091189122
 mas "mr tidy", id: 1063178800
+mas "xcode", id: 497799835

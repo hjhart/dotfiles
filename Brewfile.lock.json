@@ -842,13 +842,20 @@
         "options": {
           "full_name": "firefox"
         }
+      },
+      "1password": {
+        "version": "8.10.23",
+        "options": {
+          "full_name": "1password"
+        }
       }
     },
     "mas": {
       "bear": null,
       "todoist": null,
       "kelir": null,
-      "mr tidy": null
+      "mr tidy": null,
+      "xcode": null
     }
   },
   "system": {
@@ -882,7 +889,7 @@
         "HOMEBREW_PREFIX": "/opt/homebrew",
         "Homebrew/homebrew-core": "api",
         "CLT": "15.1.0.0.1.1700200546",
-        "Xcode": "15.1",
+        "Xcode": "15.2",
         "macOS": "14.2.1"
       }
     }
