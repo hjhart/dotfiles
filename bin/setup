@@ -13,10 +13,6 @@ fi
 
 ./bin/update
 
-
-cp bin/tat /opt/homebrew/bin/tat
-cp bin/ntimes /opt/homebrew/bin/times
-
 curl -L https://get.oh-my.fish | fish
 
 omf install agnoster
