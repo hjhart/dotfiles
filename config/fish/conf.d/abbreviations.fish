@@ -81,3 +81,5 @@ abbr -a fd fly deploy
 
 abbr -a ext bin/extract 
 abbr -a exh bin/extract_for_henry
+
+abbr -a nu nvm use 22
