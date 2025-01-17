@@ -63,7 +63,7 @@ abbr -a sd ./script/deploy production
 abbr -a su ./script/update
 abbr -a d docker
 abbr -a a aptible
-abbr -a al aptible login --email="jhart@hellobrightline.com" --lifetime 7d 
+abbr -a al aptible login --email="james@claritypediatrics.com" --lifetime 7d 
 abbr -a sl script/lint
 abbr -a sls script/lint --staged
 

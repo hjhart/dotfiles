@@ -114,13 +114,16 @@
   "terminal.integrated.scrollback": 100000,
   "search.useIgnoreFiles": false,
   "search.exclude": {
+    "**/.next": true,
+    "**/build": true,
+    "**/coverage": true,
     "**/log": true,
     "app/assets/builds": true,
     "public/assets": true,
     "public/packs": true,
     "public/packs-test": true,
-    "tmp/cache": true,
-    "spec/cassettes": true
+    "spec/cassettes": true,
+    "tmp/cache": true
   },
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
@@ -153,5 +156,11 @@
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "extensions.ignoreRecommendations": true,
   "tailwindDocs.useSimpleBrowser": false,
-  "headwind.runOnSave": false
+  "headwind.runOnSave": false,
+  "remove-tabs-on-save.ignoreFileExtensions": [
+    "*.go"
+  ],
+  "explorer.excludeGitIgnore": true,
+  "githubPullRequests.terminalLinksHandler": "github",
+  "jest.runMode": "deferred",
 }
