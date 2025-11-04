@@ -12,6 +12,7 @@ fisher install gazorby/fish-abbreviation-tips
 fisher install franciscolourenco/done
 fisher install IlanCosman/tide@v6
 fisher install jorgebucaran/nvm.fish
+fisher install rbenv/fish-rbenv
 
 # default file extensions
 duti -s com.microsoft.VSCode .rb all

@@ -61,11 +61,6 @@ Plugin 'gabrielelana/vim-markdown'
 " Searching
 Plugin 'mileszs/ack.vim'
 
-" Open alternative file with :A / :AV / :AH
-Plugin 'compactcode/open.vim'
-Plugin 'compactcode/alternate.vim'
-Plugin 'jfahrer/vim-suggest-alternate'
-
 " tmux integration
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'christoomey/vim-tmux-runner'

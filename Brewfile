@@ -6,6 +6,7 @@ brew "jq"
 brew "ag"
 brew "bat"
 brew "duti"
+brew "rbenv"
 brew "terminal-notifier"
 brew "defaultbrowser"
 

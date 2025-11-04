@@ -1,4 +1,5 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
@@ -11,10 +12,14 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "testdouble.vscode-standard-ruby"
   },
+  "workbench.editor.customLabels.patterns": {
+    "**/app/**/_ui.tsx": "(${dirname})/_ui.${extname}",
+    "**/app/**/page.tsx": "(${dirname})/page.${extname}",
+    "**/app/**/layout.tsx": "(${dirname})/layout.${extname}",
+    "**/app/**/index.tsx": "(${dirname})/index.${extname}"
+},
   "typescript.workspaceSymbols.scope": "currentProject",
-  "solargraph.useBundler": true,
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "k"],
@@ -76,41 +81,26 @@
   "vim.foldfix": true,
   "vim.leader": " ",
   "explorer.confirmDragAndDrop": false,
-  "solargraph.externalServer": {},
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "explorer.confirmDelete": false,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "svg.preview.mode": "svg",
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.acceptSuggestionOnEnter": "off",
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "ruby.specSaveFile": true,
   "workbench.colorCustomizations": {
     "[Material Theme High Contrast]": {}
   },
   "workbench.editor.wrapTabs": true,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.iconTheme": "eq-material-theme-icons",
   "editor.suggest.showStatusBar": true,
   "editor.cursorStyle": "line",
   "editor.insertSpaces": false,
   "editor.lineNumbers": "on",
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "off",
-  "tailwindCSS.lint.invalidApply": "ignore",
   "scss.lint.unknownAtRules": "ignore",
   "workbench.colorTheme": "Material Theme High Contrast",
-  "redhat.telemetry.enabled": false,
   "terminal.integrated.scrollback": 100000,
   "search.useIgnoreFiles": false,
   "search.exclude": {
@@ -132,9 +122,6 @@
     "markdown": false,
     "scminput": false,
     "yaml": true
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.autoSave": "onFocusChange",
   "[erb]": {
@@ -163,4 +150,18 @@
   "explorer.excludeGitIgnore": true,
   "githubPullRequests.terminalLinksHandler": "github",
   "jest.runMode": "deferred",
+  "cSpell.userWords": [
+    "healthie"
+  ],
+  "workbench.settings.editor": "json",
+  "playwright.showTrace": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "prettier.enableDebugLogs": true,
+  "jest.debugMode": true,
+  "jest.jestCommandLine": "pnpm jest",
+  "jest.rootPath": "/Users/compuper/workspace/clarity/packages/shared",
+  "datadog.timeRange.setup.timeFrame": "1mo",
+  "datadog.telemetry.setup.enableTelemetry": "disabled",
+  "playwright.reuseBrowser": false,
+  "terminal.external.osxExec": "iTerm.app",
 }

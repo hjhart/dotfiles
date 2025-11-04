@@ -16,13 +16,17 @@ abbr -a gce git commit --allow-empty --no-edit -m
 abbr -a gl git log
 abbr -a gp git push -u origin head
 abbr -a gpom git pull --rebase origin main
+abbr -a grc git rebase --continue
+abbr -a gra git rebase --abort
 abbr -a gpu git pull
 abbr -a gba git branch -a 
+abbr -a grp git reset -p
+abbr -a gcp git cherry-pick 
 
 
 
 abbr -a gsta git stash
-abbr -a gstap git stash pop
+abbr -a gsp git stash pop
 
 abbr -a b bundle
 abbr -a be bundle exec
@@ -54,21 +58,13 @@ abbr -a dc docker-compose
 abbr -a dcud docker-compose up -d
 abbr -a dcd docker-compose down
 
-abbr -a ss ./script/server
-abbr -a sr ./script/run
-abbr -a sn ./script/ngrok-server
-abbr -a sc ./script/console
-abbr -a sdd ./script/diff-deploy --log
-abbr -a sd ./script/deploy production
-abbr -a su ./script/update
 abbr -a d docker
 abbr -a a aptible
 abbr -a al aptible login --email="james@claritypediatrics.com" --lifetime 7d 
-abbr -a sl script/lint
-abbr -a sls script/lint --staged
 
 abbr -a gcf git commit -m \"Fix specs\"
-abbr -a gcl git commit -m Lint
+abbr -a gcc git commit -n -m Changeset
+abbr -a gcl git commit -m Lint -n
 abbr -a rr rails routes
 abbr -a orw overmind restart web
 
@@ -83,3 +79,20 @@ abbr -a ext bin/extract
 abbr -a exh bin/extract_for_henry
 
 abbr -a nu nvm use 22
+abbr -a pps DEBUG='"prisma:*"' pnpm prisma studio
+abbr -a referral pnpm with-env pnpm script:run ./scripts/generate-test-referrals.ts add -d F90.0 -l Hart -f James -c Henry -e 
+abbr -a td turbo dev
+abbr -a tr turbo reset
+abbr -a tt turbo typecheck
+abbr -a tl turbo lint
+abbr -a pc pnpm changeset
+abbr -a pp pnpm prettier
+abbr -a ptu pnpm test:unit
+abbr -a ptuc pnpm test:unit:ci
+
+
+abbr -a om open ~/Music
+
+
+abbr -a tzla sudo systemsetup -settimezone America/Los_Angeles
+abbr -a tzny sudo systemsetup -settimezone America/New_York
