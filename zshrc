@@ -33,8 +33,37 @@ alias gr="git recentb"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
+# fzf
+source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+
+# zsh-autosuggestions
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# zsh-autopair
+source "$(brew --prefix)/share/zsh-autopair/autopair.zsh"
+
+# done notifications (notify via terminal-notifier when a command takes > 10s)
+_done_preexec() {
+  _done_start=$SECONDS
+  _done_cmd=$1
+}
+_done_precmd() {
+  local elapsed=$(( SECONDS - _done_start ))
+  if (( _done_start > 0 && elapsed >= 10 )); then
+    terminal-notifier -title "Done (${elapsed}s)" -message "$_done_cmd" -sound default 2>/dev/null
+  fi
+  _done_start=0
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec _done_preexec
+add-zsh-hook precmd _done_precmd
+
 # zoxide (z)
 eval "$(zoxide init zsh)"
 
 # Powerlevel10k config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# zsh-syntax-highlighting (must be last)
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
