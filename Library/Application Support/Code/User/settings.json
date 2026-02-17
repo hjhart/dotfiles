@@ -11,7 +11,7 @@
   "[ruby]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": true
   },
   "workbench.editor.customLabels.patterns": {
     "**/app/**/_ui.tsx": "(${dirname})/_ui.${extname}",
@@ -164,4 +164,6 @@
   "datadog.telemetry.setup.enableTelemetry": "disabled",
   "playwright.reuseBrowser": false,
   "terminal.external.osxExec": "iTerm.app",
+  "editor.accessibilitySupport": "off",
+  "docker.extension.enableComposeLanguageServer": false
 }

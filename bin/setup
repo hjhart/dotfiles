@@ -13,10 +13,8 @@ fi
 
 ./bin/update
 
-curl -L https://get.oh-my.fish | fish
-
-omf install agnoster
-
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
+echo "Setup complete. Run 'p10k configure' to set up your Powerlevel10k prompt."
+echo "Then run 'chsh -s \$(which zsh)' to set zsh as your default shell."
