@@ -40,6 +40,7 @@ source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 
 # zsh-autosuggestions
 source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$(brew --prefix)/share/zsh-autosuggestions-abbreviations-strategy/zsh-autosuggestions-abbreviations-strategy.zsh"
 
 # zsh-autopair
 source "$(brew --prefix)/share/zsh-autopair/autopair.zsh"
