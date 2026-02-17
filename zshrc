@@ -12,6 +12,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 
 # zsh-abbr
+export ABBR_USER_ABBREVIATIONS_FILE="$HOME/.config/zsh-abbr/user-abbreviations"
 source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
 
 # PATH
