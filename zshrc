@@ -22,8 +22,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Aliases
-alias claude="vt claude"
-alias opencode="vt opencode"
 alias ll="ls -al"
 alias lt="ls -altr"
 alias gprs="git stash && git pull --rebase && git stash pop"
