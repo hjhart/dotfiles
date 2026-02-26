@@ -12,8 +12,6 @@ brew "defaultbrowser"
 
 tap "thoughtbot/formulae"
 brew "rcm"
-brew "fish"
-brew "fisher"
 tap "olets/tap"
 brew "olets/tap/zsh-abbr"
 brew "powerlevel10k"
