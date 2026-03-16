@@ -7,6 +7,7 @@ brew "ag"
 brew "bat"
 brew "duti"
 brew "rbenv"
+brew "nvm"
 brew "terminal-notifier"
 brew "defaultbrowser"
 

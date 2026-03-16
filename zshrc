@@ -34,7 +34,11 @@ alias gr="git recentb"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+if [[ "$OSTYPE" == darwin* ]]; then
+  [ -s "$(brew --prefix nvm)/nvm.sh" ] && source "$(brew --prefix nvm)/nvm.sh"
+else
+  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+fi
 
 # fzf
 source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
