@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+#
+# tm - Tmux session manager
+# 
+# Usage:
+#   tm              - Interactive session picker (fzf) with existing sessions + recent dirs
+#   tm <name>       - Create or attach to session named <name>
+#   tm <path>       - Create or attach to session in <path> (uses basename as name)
+
+set -e
+
+# Helper functions
+session_exists() {
+  tmux list-sessions -F '#{session_name}' 2>/dev/null | grep -q "^$1$"
+}
+
+not_in_tmux() {
+  [ -z "$TMUX" ]
+}
+
+in_tmux() {
+  [ -n "$TMUX" ]
+}
+
+sanitize_session_name() {
+  # Convert path to valid session name (replace dots and slashes with dashes)
+  echo "$1" | sed 's/[\.\/]/-/g'
+}
+
+# Get list of recent directories from zoxide (if available)
+get_recent_dirs() {
+  if command -v zoxide >/dev/null 2>&1; then
+    zoxide query --list 2>/dev/null | head -20 | while read -r dir; do
+      # Skip current directory
+      [ "$dir" = "$PWD" ] && continue
+      basename "$dir"
+    done
+  fi
+}
+
+# Interactive mode - show fzf picker
+interactive_mode() {
+  # Build list of options and run fzf
+  local choice=$(
+    {
+      # Current sessions (if any)
+      tmux list-sessions -F '#{session_name}' 2>/dev/null | sed 's/^/[session] /'
+      
+      # Recent directories from zoxide
+      get_recent_dirs | sed 's/^/[recent]  /'
+      
+      # Option to create new session from current directory
+      echo "[new]     $(basename "$PWD")"
+    } | fzf \
+        --reverse \
+        --height=40% \
+        --border \
+        --prompt="Session > " \
+        --preview="echo {} | grep -q '^\[session\]' && tmux list-windows -t {2} 2>/dev/null || echo 'New session'" \
+        --preview-window=right:40%
+  )
+  
+  if [ -z "$choice" ]; then
+    exit 0
+  fi
+  
+  local type=$(echo "$choice" | awk '{print $1}')
+  local name=$(echo "$choice" | awk '{print $2}')
+  
+  case "$type" in
+    "[session]")
+      attach_to_session "$name"
+      ;;
+    "[recent]")
+      # Find the full path from zoxide and create session there
+      local full_path=$(zoxide query "$name" 2>/dev/null | head -1)
+      if [ -n "$full_path" ]; then
+        create_or_attach_at_path "$full_path"
+      else
+        create_or_attach "$name"
+      fi
+      ;;
+    "[new]")
+      create_or_attach "$(basename "$PWD")"
+      ;;
+  esac
+}
+
+# Create or attach to session by name
+create_or_attach() {
+  local session_name=$(sanitize_session_name "$1")
+  
+  if not_in_tmux; then
+    # Outside tmux - create new session or attach to existing
+    tmux new-session -As "$session_name"
+  else
+    # Inside tmux
+    if ! session_exists "$session_name"; then
+      # Create session in background
+      (TMUX='' tmux new-session -Ad -s "$session_name")
+    fi
+    # Switch to the session
+    tmux switch-client -t "$session_name"
+  fi
+}
+
+# Create or attach to session at specific path
+create_or_attach_at_path() {
+  local path="$1"
+  local session_name=$(sanitize_session_name "$(basename "$path")")
+  
+  if not_in_tmux; then
+    # Outside tmux - create new session or attach to existing
+    tmux new-session -As "$session_name" -c "$path"
+  else
+    # Inside tmux
+    if ! session_exists "$session_name"; then
+      # Create session in background at the specified path
+      (TMUX='' tmux new-session -Ad -s "$session_name" -c "$path")
+    fi
+    # Switch to the session
+    tmux switch-client -t "$session_name"
+  fi
+}
+
+# Attach to existing session
+attach_to_session() {
+  local session_name="$1"
+  
+  if not_in_tmux; then
+    tmux attach-session -t "$session_name"
+  else
+    tmux switch-client -t "$session_name"
+  fi
+}
+
+# Main logic
+main() {
+  if [ $# -eq 0 ]; then
+    # No arguments - interactive mode
+    interactive_mode
+  elif [ -d "$1" ]; then
+    # Argument is a directory path
+    create_or_attach_at_path "$1"
+  else
+    # Argument is a session name
+    create_or_attach "$1"
+  fi
+}
+
+main "$@"

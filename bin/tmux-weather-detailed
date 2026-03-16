@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+#
+# tmux-weather-detailed - Show detailed weather forecast in popup
+# Uses Pirate Weather API
+
+set -e
+
+# Config file location
+CONFIG_FILE="$HOME/.config/weather/config"
+
+# Load config
+if [ -f "$CONFIG_FILE" ]; then
+  source "$CONFIG_FILE"
+fi
+
+# Check if API key is configured
+if [ -z "$PIRATE_WEATHER_API_KEY" ]; then
+  echo "⚠ No API key configured"
+  echo ""
+  echo "Edit ~/.config/weather/config to add your Pirate Weather API key"
+  exit 1
+fi
+
+# Default coordinates (Seattle) if not set
+LAT="${LAT:-47.58282468423386}"
+LON="${LON:-122.31002803241961}"
+
+# Fetch weather data
+url="https://api.pirateweather.net/forecast/${PIRATE_WEATHER_API_KEY}/${LAT},${LON}?units=us"
+data=$(curl -sf "$url" 2>/dev/null)
+
+if [ -z "$data" ]; then
+  echo "⚠ Failed to fetch weather data"
+  exit 1
+fi
+
+# Parse current conditions
+temp=$(echo "$data" | jq -r '.currently.temperature // "N/A"' | xargs printf "%.0f")
+feels_like=$(echo "$data" | jq -r '.currently.apparentTemperature // "N/A"' | xargs printf "%.0f")
+summary=$(echo "$data" | jq -r '.currently.summary // "Unknown"')
+humidity=$(echo "$data" | jq -r '.currently.humidity // 0' | awk '{printf "%.0f", $1 * 100}')
+wind=$(echo "$data" | jq -r '.currently.windSpeed // 0' | xargs printf "%.0f")
+precip_prob=$(echo "$data" | jq -r '.currently.precipProbability // 0' | awk '{printf "%.0f", $1 * 100}')
+icon=$(echo "$data" | jq -r '.currently.icon // "unknown"')
+
+# Choose emoji based on icon
+emoji=""
+case "$icon" in
+  clear-day) emoji="☀️" ;;
+  clear-night) emoji="🌙" ;;
+  rain) emoji="🌧️" ;;
+  snow) emoji="❄️" ;;
+  sleet) emoji="🌨️" ;;
+  wind) emoji="💨" ;;
+  fog) emoji="🌫️" ;;
+  cloudy) emoji="☁️" ;;
+  partly-cloudy-day) emoji="⛅" ;;
+  partly-cloudy-night) emoji="☁️" ;;
+  *) emoji="🌡️" ;;
+esac
+
+# Display current conditions
+echo "════════════════════════════════════════"
+echo "  ${emoji}  Current Weather - Seattle"
+echo "════════════════════════════════════════"
+echo ""
+echo "  Conditions:  $summary"
+echo "  Temperature: ${temp}°F (feels like ${feels_like}°F)"
+echo "  Humidity:    ${humidity}%"
+echo "  Wind:        ${wind} mph"
+echo "  Precip:      ${precip_prob}% chance"
+echo ""
+
+# Hourly forecast (next 12 hours)
+echo "────────────────────────────────────────"
+echo "  Next 12 Hours"
+echo "────────────────────────────────────────"
+echo "$data" | jq -r '.hourly.data[0:12] | .[] | 
+  "\(.time | strftime("%I:%M %p"))  \(.temperature | floor)°F  \(.summary)  💧\((.precipProbability * 100) | floor)%"' | \
+  column -t -s ' '
+echo ""
+
+# Daily forecast
+echo "────────────────────────────────────────"
+echo "  7-Day Forecast"
+echo "────────────────────────────────────────"
+echo "$data" | jq -r '.daily.data[0:7] | .[] | 
+  "\(.time | strftime("%a %b %d"))  Hi: \(.temperatureHigh | floor)°F  Lo: \(.temperatureLow | floor)°F  \(.summary)  💧\((.precipProbability * 100) | floor)%"' | \
+  column -t -s ' '
+echo ""
+echo "Press any key to close..."
+read -n 1 -s

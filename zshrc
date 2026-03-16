@@ -17,7 +17,7 @@ source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
 
 # PATH
 export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PNPM_HOME:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
