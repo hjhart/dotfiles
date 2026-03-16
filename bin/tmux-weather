@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+#
+# tmux-weather - Display weather info for tmux status bar
+# Uses Pirate Weather API with 15-minute caching
+
+set -e
+
+# Config file location
+CONFIG_FILE="$HOME/.config/weather/config"
+CACHE_FILE="/tmp/tmux-weather-cache"
+CACHE_DURATION=900  # 15 minutes in seconds
+
+# Load config
+if [ -f "$CONFIG_FILE" ]; then
+  source "$CONFIG_FILE"
+fi
+
+# Check if API key is configured
+if [ -z "$PIRATE_WEATHER_API_KEY" ]; then
+  echo "⚠ No API key"
+  exit 0
+fi
+
+# Default coordinates (Seattle) if not set
+LAT="${LAT:-47.58282468423386}"
+LON="${LON:-122.31002803241961}"
+
+# Function to fetch weather from API
+fetch_weather() {
+  local url="https://api.pirateweather.net/forecast/${PIRATE_WEATHER_API_KEY}/${LAT},${LON}?units=us"
+  
+  # Fetch data and parse with jq
+  local data=$(curl -sf "$url" 2>/dev/null)
+  
+  if [ -z "$data" ]; then
+    echo "⚠ API error"
+    return 1
+  fi
+  
+  # Parse current conditions
+  local temp=$(echo "$data" | jq -r '.currently.temperature // "N/A"' | xargs printf "%.0f")
+  local summary=$(echo "$data" | jq -r '.currently.summary // "Unknown"')
+  local precip_prob=$(echo "$data" | jq -r '.currently.precipProbability // 0' | awk '{printf "%.0f", $1 * 100}')
+  local icon=$(echo "$data" | jq -r '.currently.icon // "unknown"')
+  
+  # Get next hour precipitation probability
+  local next_hour_precip=$(echo "$data" | jq -r '.minutely.data[0].precipProbability // 0' | awk '{printf "%.0f", $1 * 100}')
+  
+  # Choose emoji based on icon
+  local emoji
+  case "$icon" in
+    clear-day) emoji="☀️" ;;
+    clear-night) emoji="🌙" ;;
+    rain) emoji="🌧️" ;;
+    snow) emoji="❄️" ;;
+    sleet) emoji="🌨️" ;;
+    wind) emoji="💨" ;;
+    fog) emoji="🌫️" ;;
+    cloudy) emoji="☁️" ;;
+    partly-cloudy-day) emoji="⛅" ;;
+    partly-cloudy-night) emoji="☁️" ;;
+    *) emoji="🌡️" ;;
+  esac
+  
+  # Format output
+  local output="${emoji} ${temp}°F"
+  
+  # Add precipitation probability if > 0
+  if [ "$next_hour_precip" -gt 0 ]; then
+    output="${output} 💧${next_hour_precip}%"
+  fi
+  
+  echo "$output"
+}
+
+# Check cache validity
+should_fetch=true
+if [ -f "$CACHE_FILE" ]; then
+  cache_age=$(($(date +%s) - $(stat -f %m "$CACHE_FILE" 2>/dev/null || echo 0)))
+  if [ $cache_age -lt $CACHE_DURATION ]; then
+    should_fetch=false
+  fi
+fi
+
+# Fetch or use cache
+if [ "$should_fetch" = true ]; then
+  weather=$(fetch_weather)
+  if [ $? -eq 0 ] && [ -n "$weather" ]; then
+    echo "$weather" > "$CACHE_FILE"
+    echo "$weather"
+  else
+    # If fetch fails, use cache if available
+    if [ -f "$CACHE_FILE" ]; then
+      cat "$CACHE_FILE"
+    else
+      echo "⚠ Weather"
+    fi
+  fi
+else
+  cat "$CACHE_FILE"
+fi
