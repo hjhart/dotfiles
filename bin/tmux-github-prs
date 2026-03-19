@@ -1,0 +1,163 @@
+#!/usr/bin/env bash
+#
+# tmux-github-prs - Show my open GitHub PRs with check status and comments
+# Used as a tmux popup via prefix + p
+
+set -e
+
+# Colors
+BOLD='\033[1m'
+DIM='\033[2m'
+RESET='\033[0m'
+GREEN='\033[32m'
+RED='\033[31m'
+YELLOW='\033[33m'
+CYAN='\033[36m'
+MAGENTA='\033[35m'
+ORANGE='\033[38;5;166m'
+
+# Check gh is available and authed
+if ! command -v gh &>/dev/null; then
+  echo "gh CLI not installed. Install with: brew install gh"
+  exit 1
+fi
+
+if ! gh auth status &>/dev/null 2>&1; then
+  echo "Not authenticated. Run: gh auth login"
+  exit 1
+fi
+
+echo -e "${BOLD}════════════════════════════════════════════════════════════════${RESET}"
+echo -e "  ${ORANGE}${BOLD}  My Open Pull Requests${RESET}"
+echo -e "${BOLD}════════════════════════════════════════════════════════════════${RESET}"
+echo ""
+
+# Get all open PRs authored by me across all repos
+prs=$(gh search prs --author @me --state open --archived=false --limit 20 --json repository,title,number 2>/dev/null)
+
+if [ -z "$prs" ] || [ "$prs" = "[]" ]; then
+  echo "  No open pull requests found."
+  echo ""
+  echo "Press any key to close..."
+  read -n 1 -s
+  exit 0
+fi
+
+pr_count=$(echo "$prs" | jq 'length')
+echo -e "  ${DIM}Found ${pr_count} open PR(s)${RESET}"
+echo ""
+
+# Iterate through each PR
+echo "$prs" | jq -c '.[]' | while read -r pr; do
+  repo=$(echo "$pr" | jq -r '.repository.nameWithOwner')
+  number=$(echo "$pr" | jq -r '.number')
+  title=$(echo "$pr" | jq -r '.title')
+
+  # Fetch detailed PR info
+  details=$(gh pr view "$number" --repo "$repo" \
+    --json statusCheckRollup,comments,reviews,isDraft,additions,deletions,headRefName,updatedAt,reviewDecision \
+    2>/dev/null) || continue
+
+  is_draft=$(echo "$details" | jq -r '.isDraft')
+  additions=$(echo "$details" | jq -r '.additions // 0')
+  deletions=$(echo "$details" | jq -r '.deletions // 0')
+  branch=$(echo "$details" | jq -r '.headRefName')
+  review_decision=$(echo "$details" | jq -r '.reviewDecision // "NONE"')
+
+  # PR title line
+  draft_tag=""
+  if [ "$is_draft" = "true" ]; then
+    draft_tag="${DIM} [DRAFT]${RESET}"
+  fi
+
+  echo -e "  ${BOLD}${CYAN}${repo}#${number}${RESET}${draft_tag}"
+  echo -e "  ${BOLD}${title}${RESET}"
+  echo -e "  ${DIM}${branch}${RESET}  ${GREEN}+${additions}${RESET} ${RED}-${deletions}${RESET}"
+
+  # Review decision
+  case "$review_decision" in
+    APPROVED)
+      echo -e "  ${GREEN}✓ Approved${RESET}" ;;
+    CHANGES_REQUESTED)
+      echo -e "  ${RED}✗ Changes requested${RESET}" ;;
+    REVIEW_REQUIRED)
+      echo -e "  ${YELLOW}● Review required${RESET}" ;;
+  esac
+
+  # Check status
+  checks=$(echo "$details" | jq -r '.statusCheckRollup // []')
+  check_count=$(echo "$checks" | jq 'length')
+
+  if [ "$check_count" -gt 0 ]; then
+    passed=$(echo "$checks" | jq '[.[] | select(.conclusion == "SUCCESS")] | length')
+    failed=$(echo "$checks" | jq '[.[] | select(.conclusion == "FAILURE")] | length')
+    pending=$(echo "$checks" | jq "[.[] | select(.status != \"COMPLETED\")] | length")
+    neutral=$(echo "$checks" | jq '[.[] | select(.conclusion == "NEUTRAL" or .conclusion == "SKIPPED")] | length')
+
+    # Summary line
+    check_parts=()
+    if [ "$passed" -gt 0 ]; then
+      check_parts+=("${GREEN}${passed} passed${RESET}")
+    fi
+    if [ "$failed" -gt 0 ]; then
+      check_parts+=("${RED}${failed} failed${RESET}")
+    fi
+    if [ "$pending" -gt 0 ]; then
+      check_parts+=("${YELLOW}${pending} pending${RESET}")
+    fi
+    if [ "$neutral" -gt 0 ]; then
+      check_parts+=("${DIM}${neutral} skipped${RESET}")
+    fi
+
+    # Overall status icon
+    if [ "$failed" -gt 0 ]; then
+      status_icon="${RED}✗${RESET}"
+    elif [ "$pending" -gt 0 ]; then
+      status_icon="${YELLOW}●${RESET}"
+    else
+      status_icon="${GREEN}✓${RESET}"
+    fi
+
+    check_summary=$(IFS=', '; echo "${check_parts[*]}")
+    echo -e "  ${status_icon} Checks: ${check_summary}"
+
+    # Show individual failed checks
+    if [ "$failed" -gt 0 ]; then
+      echo "$checks" | jq -r '.[] | select(.conclusion == "FAILURE") | .name' | while read -r name; do
+        echo -e "    ${RED}✗ ${name}${RESET}"
+      done
+    fi
+
+    # Show individual pending checks
+    if [ "$pending" -gt 0 ]; then
+      echo "$checks" | jq -r '.[] | select(.status != "COMPLETED") | .name' | while read -r name; do
+        echo -e "    ${YELLOW}● ${name}${RESET}"
+      done
+    fi
+  else
+    echo -e "  ${DIM}No checks${RESET}"
+  fi
+
+  # Comments & reviews count
+  comment_count=$(echo "$details" | jq '.comments | length')
+  review_count=$(echo "$details" | jq '[.reviews[] | select(.state != "PENDING")] | length')
+
+  counts=()
+  if [ "$comment_count" -gt 0 ]; then
+    counts+=("${comment_count} comment(s)")
+  fi
+  if [ "$review_count" -gt 0 ]; then
+    counts+=("${review_count} review(s)")
+  fi
+
+  if [ ${#counts[@]} -gt 0 ]; then
+    count_summary=$(IFS=', '; echo "${counts[*]}")
+    echo -e "  ${MAGENTA}💬 ${count_summary}${RESET}"
+  fi
+
+  echo -e "  ${BOLD}────────────────────────────────────────────────────────────────${RESET}"
+done
+
+echo ""
+echo "Press any key to close..."
+read -n 1 -s

@@ -165,5 +165,6 @@
   "playwright.reuseBrowser": false,
   "terminal.external.osxExec": "iTerm.app",
   "editor.accessibilitySupport": "off",
-  "docker.extension.enableComposeLanguageServer": false
+  "docker.extension.enableComposeLanguageServer": false,
+  "chat.viewSessions.orientation": "stacked"
 }
