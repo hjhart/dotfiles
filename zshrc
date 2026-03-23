@@ -5,21 +5,33 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew (macOS only)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Powerlevel10k
-source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
+else
+  source "$HOME/powerlevel10k/powerlevel10k.zsh-theme"
+fi
 
 # zsh-abbr
 export ABBR_USER_ABBREVIATIONS_FILE="$HOME/.config/zsh-abbr/user-abbreviations"
-source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
+else
+  source "$HOME/.zsh-abbr/zsh-abbr.plugin.zsh"
+fi
 
 # PATH
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$HOME/.dotfiles/bin:$PNPM_HOME:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+  export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+fi
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -41,17 +53,30 @@ else
 fi
 
 # fzf
-source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
-source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+  source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+else
+  [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+  [[ -f /usr/share/doc/fzf/examples/completion.zsh ]] && source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 # zsh-autosuggestions
-source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$(brew --prefix)/share/zsh-autosuggestions-abbreviations-strategy/zsh-autosuggestions-abbreviations-strategy.zsh"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  source "$(brew --prefix)/share/zsh-autosuggestions-abbreviations-strategy/zsh-autosuggestions-abbreviations-strategy.zsh"
+else
+  [[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 # zsh-autopair
-source "$(brew --prefix)/share/zsh-autopair/autopair.zsh"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source "$(brew --prefix)/share/zsh-autopair/autopair.zsh"
+else
+  [[ -f "$HOME/.zsh-autopair/autopair.zsh" ]] && source "$HOME/.zsh-autopair/autopair.zsh"
+fi
 
-# done notifications (notify via terminal-notifier when a command takes > 10s)
+# done notifications (notify when a command takes > 10s)
 _done_preexec() {
   _done_start=$SECONDS
   _done_cmd=$1
@@ -59,7 +84,11 @@ _done_preexec() {
 _done_precmd() {
   local elapsed=$(( SECONDS - _done_start ))
   if (( _done_start > 0 && elapsed >= 10 )); then
-    terminal-notifier -title "Done (${elapsed}s)" -message "$_done_cmd" -sound default 2>/dev/null
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      terminal-notifier -title "Done (${elapsed}s)" -message "$_done_cmd" -sound default 2>/dev/null
+    else
+      notify-send "Done (${elapsed}s)" "$_done_cmd" 2>/dev/null || true
+    fi
   fi
   _done_start=0
 }
@@ -74,4 +103,8 @@ eval "$(zoxide init zsh)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # zsh-syntax-highlighting (must be last)
-source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+else
+  [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi

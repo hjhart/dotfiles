@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+echo
+echo "==> Linux dotfiles setup"
+echo
+
+# Move dotfiles to ~/.dotfiles if not already there
+if [[ "$DOTFILES_DIR" != "$HOME/.dotfiles" ]]; then
+  echo "==> Moving dotfiles to ~/.dotfiles..."
+  mv "$DOTFILES_DIR" "$HOME/.dotfiles"
+  DOTFILES_DIR="$HOME/.dotfiles"
+  echo "    Done. Continuing from $DOTFILES_DIR"
+  echo
+  exec "$DOTFILES_DIR/bin/setup-linux"
+fi
+
+cd "$DOTFILES_DIR"
+
+# Install system packages
+echo "==> Installing system packages via apt..."
+sudo apt-get update -qq
+sudo apt-get install -y \
+  zsh \
+  vim \
+  tmux \
+  git \
+  curl \
+  wget \
+  rcm \
+  fzf \
+  zsh-autosuggestions \
+  zsh-syntax-highlighting \
+  zoxide
+echo
+
+# Powerlevel10k
+if [[ -d "$HOME/powerlevel10k" ]]; then
+  echo "==> Powerlevel10k already installed, updating..."
+  git -C "$HOME/powerlevel10k" pull --ff-only
+else
+  echo "==> Installing Powerlevel10k..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/powerlevel10k"
+fi
+echo
+
+# zsh-abbr
+if [[ -d "$HOME/.zsh-abbr" ]]; then
+  echo "==> zsh-abbr already installed, updating..."
+  git -C "$HOME/.zsh-abbr" pull --ff-only
+else
+  echo "==> Installing zsh-abbr..."
+  git clone --depth=1 --recurse-submodules https://github.com/olets/zsh-abbr.git "$HOME/.zsh-abbr"
+fi
+echo
+
+# zsh-autopair
+if [[ -d "$HOME/.zsh-autopair" ]]; then
+  echo "==> zsh-autopair already installed, updating..."
+  git -C "$HOME/.zsh-autopair" pull --ff-only
+else
+  echo "==> Installing zsh-autopair..."
+  git clone --depth=1 https://github.com/hlissner/zsh-autopair.git "$HOME/.zsh-autopair"
+fi
+echo
+
+# Link dotfiles with rcm
+echo "==> Linking dotfiles with rcup..."
+env RCRC="$DOTFILES_DIR/rcrc" rcup -v -d "$DOTFILES_DIR"
+echo
+
+# Vim / Vundle
+if [[ -d "$HOME/.vim/bundle/Vundle.vim" ]]; then
+  echo "==> Vundle already installed"
+else
+  echo "==> Installing Vundle..."
+  git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
+  vim +PluginInstall +qall
+fi
+echo
+
+# vibetunnel (node-addon-api must be installed first as a global dep)
+if command -v vibetunnel &>/dev/null; then
+  echo "==> vibetunnel already installed"
+else
+  echo "==> Installing vibetunnel..."
+  npm install -g node-addon-api
+  npm install -g vibetunnel
+fi
+echo
+
+# Set zsh as default shell
+if [[ "$SHELL" == "$(which zsh)" ]]; then
+  echo "==> zsh is already the default shell"
+else
+  echo "==> Setting zsh as default shell..."
+  chsh -s "$(which zsh)"
+fi
+echo
+
+echo "==> Setup complete!"
+echo "    Run 'p10k configure' to customize your Powerlevel10k prompt."
+echo "    Start a new shell or run: exec zsh"
+echo
