@@ -1,5 +1,5 @@
 [core]
-	editor = /opt/homebrew/bin/vim
+	editor = vim
 	pager = less
 [transfer]
 	fsckobjects = true
@@ -42,5 +42,3 @@
 	defaultBranch = main
 [push]
 	default = simple
-[credential]
-	helper = osxkeychain
