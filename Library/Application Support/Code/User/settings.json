@@ -113,7 +113,8 @@
     "public/packs": true,
     "public/packs-test": true,
     "spec/cassettes": true,
-    "tmp/cache": true
+    "tmp/cache": true,
+    "**/prisma/client": true
   },
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {

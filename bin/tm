@@ -44,7 +44,7 @@ interactive_mode() {
   local choice=$(
     {
       # Current sessions (if any)
-      tmux list-sessions -F '#{session_name}' 2>/dev/null | sed 's/^/[session] /'
+      tmux list-sessions -F '#{session_last_attached} #{session_name}' 2>/dev/null | sort -rn | awk '{print $2}' | sed 's/^/[session] /'
       
       # Recent directories from zoxide
       get_recent_dirs | sed 's/^/[recent]  /'
