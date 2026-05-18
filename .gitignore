@@ -1,3 +1,4 @@
 !bin
 vim/bundle/
 *.swp
+bin/.phi-claude-key

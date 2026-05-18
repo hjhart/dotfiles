@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Launches Claude Code with a separate API key, bypassing any active subscription auth.
+# Store your key in .phi-claude-key (gitignored) or set PHI_ANTHROPIC_API_KEY in your env.
+
+KEY_FILE="$(dirname "$0")/.phi-claude-key"
+
+if [[ -n "$PHI_ANTHROPIC_API_KEY" ]]; then
+  api_key="$PHI_ANTHROPIC_API_KEY"
+elif [[ -f "$KEY_FILE" ]]; then
+  api_key="$(cat "$KEY_FILE")"
+else
+  echo "Error: no API key found." >&2
+  echo "Either set PHI_ANTHROPIC_API_KEY or create ~/.dotfiles/bin/.phi-claude-key." >&2
+  exit 1
+fi
+
+ANTHROPIC_API_KEY="$api_key" exec claude "$@"
